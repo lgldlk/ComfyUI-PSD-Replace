@@ -1,0 +1,13 @@
+[project]
+name = "ComfyUI-PSD-Replace"
+description = "One click replacement of smart objects or layers in PSD"
+version = "1.0.0"
+license = {file = "LICENSE"}
+
+[project.urls]
+Repository = "https://github.com/lgldlk/ComfyUI-PSD-Replace"
+
+[tool.comfy]
+PublisherId = "lgldl"
+DisplayName = "ComfyUI-PSD-Replace"
+Icon = "https://fonts.gstatic.com/s/e/notoemoji/latest/1fa84/512.webp"

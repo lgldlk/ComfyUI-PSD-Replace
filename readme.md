@@ -4,4 +4,6 @@
 ![example](./assets/example.jpg)
 替换源文件例子如下
 ![example_psd](./assets/example_psdExample.jpg)
+[例子](./assets/example_psd_replace.json)
+
 

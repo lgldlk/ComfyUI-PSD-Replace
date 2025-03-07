@@ -1,0 +1,385 @@
+{
+  "last_node_id": 29,
+  "last_link_id": 56,
+  "nodes": [
+    {
+      "id": 23,
+      "type": "psd replace",
+      "pos": [
+        2465,
+        766
+      ],
+      "size": [
+        315,
+        82
+      ],
+      "flags": {},
+      "order": 2,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 53
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            44
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "psd replace"
+      },
+      "widgets_values": [
+        "04.psd",
+        "双击修改图片 拷贝"
+      ]
+    },
+    {
+      "id": 22,
+      "type": "PreviewImage",
+      "pos": [
+        2968.448974609375,
+        457.9407653808594
+      ],
+      "size": [
+        210,
+        246
+      ],
+      "flags": {},
+      "order": 5,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 42
+        }
+      ],
+      "outputs": [],
+      "properties": {
+        "Node name for S&R": "PreviewImage"
+      },
+      "widgets_values": []
+    },
+    {
+      "id": 21,
+      "type": "psd replace",
+      "pos": [
+        2465,
+        554
+      ],
+      "size": [
+        315,
+        82
+      ],
+      "flags": {},
+      "order": 1,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 52
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            42
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "psd replace"
+      },
+      "widgets_values": [
+        "03.psd",
+        "双击修改图片 拷贝"
+      ]
+    },
+    {
+      "id": 29,
+      "type": "LoadImage",
+      "pos": [
+        1656.21728515625,
+        653.5084228515625
+      ],
+      "size": [
+        315,
+        314
+      ],
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "inputs": [],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            52,
+            53,
+            54,
+            55
+          ],
+          "slot_index": 0
+        },
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": null
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "LoadImage"
+      },
+      "widgets_values": [
+        "ComfyUI_00029_.png",
+        "image"
+      ]
+    },
+    {
+      "id": 28,
+      "type": "PreviewImage",
+      "pos": [
+        2982.99609375,
+        1078.2855224609375
+      ],
+      "size": [
+        210,
+        246
+      ],
+      "flags": {},
+      "order": 8,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 48
+        }
+      ],
+      "outputs": [],
+      "properties": {
+        "Node name for S&R": "PreviewImage"
+      },
+      "widgets_values": []
+    },
+    {
+      "id": 25,
+      "type": "psd replace",
+      "pos": [
+        2459.028076171875,
+        939.2754516601562
+      ],
+      "size": [
+        315,
+        82
+      ],
+      "flags": {},
+      "order": 3,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 54
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            46
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "psd replace"
+      },
+      "widgets_values": [
+        "07.psd",
+        "双击修改图片"
+      ]
+    },
+    {
+      "id": 26,
+      "type": "PreviewImage",
+      "pos": [
+        2966.379638671875,
+        807.6774291992188
+      ],
+      "size": [
+        210,
+        246
+      ],
+      "flags": {},
+      "order": 7,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 46
+        }
+      ],
+      "outputs": [],
+      "properties": {
+        "Node name for S&R": "PreviewImage"
+      },
+      "widgets_values": []
+    },
+    {
+      "id": 24,
+      "type": "PreviewImage",
+      "pos": [
+        3219.709716796875,
+        650.8822021484375
+      ],
+      "size": [
+        209.599365234375,
+        246
+      ],
+      "flags": {},
+      "order": 6,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 44
+        }
+      ],
+      "outputs": [],
+      "properties": {
+        "Node name for S&R": "PreviewImage"
+      },
+      "widgets_values": []
+    },
+    {
+      "id": 27,
+      "type": "psd replace",
+      "pos": [
+        2480.589111328125,
+        1144.823486328125
+      ],
+      "size": [
+        315,
+        82
+      ],
+      "flags": {},
+      "order": 4,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "image",
+          "type": "IMAGE",
+          "link": 55
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            48
+          ]
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "psd replace"
+      },
+      "widgets_values": [
+        "06.psd",
+        "双击修改图片 mememememe"
+      ]
+    }
+  ],
+  "links": [
+    [
+      42,
+      21,
+      0,
+      22,
+      0,
+      "IMAGE"
+    ],
+    [
+      44,
+      23,
+      0,
+      24,
+      0,
+      "IMAGE"
+    ],
+    [
+      46,
+      25,
+      0,
+      26,
+      0,
+      "IMAGE"
+    ],
+    [
+      48,
+      27,
+      0,
+      28,
+      0,
+      "IMAGE"
+    ],
+    [
+      52,
+      29,
+      0,
+      21,
+      0,
+      "IMAGE"
+    ],
+    [
+      53,
+      29,
+      0,
+      23,
+      0,
+      "IMAGE"
+    ],
+    [
+      54,
+      29,
+      0,
+      25,
+      0,
+      "IMAGE"
+    ],
+    [
+      55,
+      29,
+      0,
+      27,
+      0,
+      "IMAGE"
+    ]
+  ],
+  "groups": [],
+  "config": {},
+  "extra": {
+    "ds": {
+      "scale": 0.8140274938683993,
+      "offset": [
+        -1526.7785359726745,
+        -744.0917497752773
+      ]
+    }
+  },
+  "version": 0.4
+}

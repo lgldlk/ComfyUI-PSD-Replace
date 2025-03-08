@@ -205,9 +205,12 @@ const main = async (psdPath, layerName, base64Image) => {
     }
 
     updatePSDCanvas(psd);
-    writePsdBuffer(psd);
+    const psdBuffer = writePsdBuffer(psd);
     const outputBuffer = psd.canvas.toBuffer();
-    return outputBuffer.toString('base64');
+    return {
+      buffer: outputBuffer.toString('base64'),
+      psd: psdBuffer.toString('base64'),
+    };
   } catch (error) {
     console.error(`Error processing PSD: ${error.message}`);
     throw error;
@@ -229,7 +232,7 @@ if (process.argv[2] === '--pipe') {
         const result = await main(psdPath, layerName, base64Image);
         process.stdout.write(JSON.stringify({ success: true, data: result }));
       } catch (error) {
-        process.stderr.write(
+        throw new Error(
           JSON.stringify({
             success: false,
             error: String(error),

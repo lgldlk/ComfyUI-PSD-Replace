@@ -4,7 +4,7 @@ import os
 import subprocess
 import json
 from .baseTransform import tensor_to_base64, base64_to_tensor
-
+import base64
 class PSDProcessor:
     def __init__(self, node_script_path):
         """Initialize with path to Node.js script"""
@@ -45,9 +45,9 @@ class PSDProcessor:
             stdout_data, stderr_data = process.communicate(input=input_data)
             
             # Check process exit code
-            if process.returncode != 0:
+            if process.returncode != 0 :
                 error_msg = stderr_data.decode('utf-8') if stderr_data else "Unknown error"
-                raise RuntimeError(f"Node.js process failed with code {process.returncode}: {error_msg}")
+                raise RuntimeError(f"{error_msg}")
             # Parse result
             result = json.loads(stdout_data.decode('utf-8'))
             if not result.get('success'):
@@ -57,15 +57,20 @@ class PSDProcessor:
 
         except subprocess.CalledProcessError as e:
             error_output = e.stderr.decode('utf-8') if e.stderr else str(e)
-            raise RuntimeError(f"Node.js execution failed: {error_output}")
+            raise RuntimeError(f"Node.js execution failed: {error_output[:80]}")
         except json.JSONDecodeError as e:
             raise RuntimeError("Failed to parse Node.js output",e)
         except Exception as e:
-            raise RuntimeError(f"Processing error: {str(e)}")
+            raise RuntimeError(f"Processing error: {str(e)[:80]}")
 
 
 
 class ReplacePSD:
+  def __init__(self):
+    self.output_dir = folder_paths.get_output_directory()
+    self.type = "output"
+    self.prefix_append = ""
+
   @classmethod
   def INPUT_TYPES(s):
     base_psd_dir = os.path.join(folder_paths.base_path, 'psd')
@@ -89,6 +94,7 @@ class ReplacePSD:
         "psd": (psd_files,),
         "image": ("IMAGE",),
         "layer_name": ("STRING", {"placeholder": "Layer Name"}),
+        "save":("BOOLEAN",{"default":False,"tooltip":"是否保存psd文件"})
       }
     }
 
@@ -96,21 +102,28 @@ class ReplacePSD:
   FUNCTION = "replace_psd"
   CATEGORY = "image"
 
-  def replace_psd(self, psd, image, layer_name):
+  def replace_psd(self, psd, image, layer_name,save):
     psd_path =os.path.join(os.path.join(folder_paths.base_path, 'psd'),psd)
+    if not os.path.exists(psd_path):
+        raise FileNotFoundError(f"PSD file not found at: {psd_path}")
+    full_output_folder, filename, counter, subfolder, filename_prefix = folder_paths.get_save_image_path('', self.output_dir,3, 1)
+
     dir_path = os.path.dirname(os.path.abspath(__file__))
     node_script_path = os.path.join(dir_path, 'index.js')
     processor = PSDProcessor(node_script_path)
     base64_image=tensor_to_base64(image)
-
-
     base64_result = processor.process_psd(
             psd_path=psd_path,
             layer_name=layer_name,
             base64_image=base64_image
         )
-
-    return (base64_to_tensor(base64_result),)
+    buffer=base64_to_tensor(base64_result['buffer'])
+    psdBuffer=base64.b64decode(base64_result['psd'])
+    output_path = os.path.join(folder_paths.base_path, 'output', f"{os.path.basename(psd).rsplit('.', 1)[0]}{counter}_replaced.psd")
+    if save:
+        with open(output_path, 'wb') as file:
+            file.write(psdBuffer)
+    return (buffer,)
 
 
 WEB_DIRECTORY = './plugins_js'

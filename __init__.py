@@ -38,7 +38,7 @@ class PSDProcessor:
                 stdin=subprocess.PIPE,
                 stdout=subprocess.PIPE,
                 stderr=subprocess.PIPE,
-                text=False  # Use bytes for binary data
+                text=False 
             )
 
             # Communicate with the process
@@ -94,7 +94,7 @@ class ReplacePSD:
         "psd": (psd_files,),
         "image": ("IMAGE",),
         "layer_name": ("STRING", {"placeholder": "Layer Name"}),
-        "save":("BOOLEAN",{"default":False,"tooltip":"是否保存psd文件"})
+        "save_psd":("BOOLEAN",{"default":False,"tooltip":"是否保存psd文件"})
       }
     }
 
@@ -102,7 +102,7 @@ class ReplacePSD:
   FUNCTION = "replace_psd"
   CATEGORY = "image"
 
-  def replace_psd(self, psd, image, layer_name,save):
+  def replace_psd(self, psd, image, layer_name,save_psd):
     psd_path =os.path.join(os.path.join(folder_paths.base_path, 'psd'),psd)
     if not os.path.exists(psd_path):
         raise FileNotFoundError(f"PSD file not found at: {psd_path}")
@@ -120,7 +120,7 @@ class ReplacePSD:
     buffer=base64_to_tensor(base64_result['buffer'])
     psdBuffer=base64.b64decode(base64_result['psd'])
     output_path = os.path.join(folder_paths.base_path, 'output', f"{os.path.basename(psd).rsplit('.', 1)[0]}{counter}_replaced.psd")
-    if save:
+    if save_psd:
         with open(output_path, 'wb') as file:
             file.write(psdBuffer)
     return (buffer,)

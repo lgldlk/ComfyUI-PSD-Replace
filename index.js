@@ -64,7 +64,6 @@ const drawLayerContent = (layer, ctx) => {
     });
 
     layer.canvas = fontCanvas;
-    fs.writeFileSync(`${layer.name}_fontCanvas.png`, fontCanvas.toBuffer());
   }
 
   if (layer.canvas) {
